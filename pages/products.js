@@ -26,6 +26,8 @@ export default function Products() {
       </thead>
       <tbody>
         {products.map(product => (
+          //*The first tr is becases each child in a list should have a unique "key" prop and the reason for _id is because on mongo atlas it uses a ._id//
+          <tr key={product._id}>
           <tr>
             <td>{product.title}</td>
            <td>
@@ -49,7 +51,7 @@ export default function Products() {
             </Link>
             </td>
           </tr>
-
+         </tr>
         ))}
       </tbody>
     </table>
