@@ -114,7 +114,9 @@ if(categories.length > 0 && category) {
       {propertiesToFill.length > 0 && propertiesToFill.map(p => (
         <div className=''>
           {/*This label is a roundabout way to capitalize the first letter of each label and then print the rest of the word*/}
-          <label>{p.name[0].toUpperCase()+p.name.substring(1)}</label>
+          <label>{p.name && typeof p.name === "string" && p.name.length > 0
+        ? p.name[0].toUpperCase() + p.name.substring(1)
+        : ''}</label>
           <div>
           <select value={productProperties[p.name]} onChange={ev => setProductProp(p.name, ev.target.value)}>
            {p.values.map(v => (
