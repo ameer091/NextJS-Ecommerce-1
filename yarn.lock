@@ -2858,7 +2858,7 @@ ms@2.1.3:
 
 multiparty@^4.2.3:
   version "4.2.3"
-  resolved "https://registry.npmjs.org/multiparty/-/multiparty-4.2.3.tgz"
+  resolved "https://registry.yarnpkg.com/multiparty/-/multiparty-4.2.3.tgz#6b14981badb5ad3f0929622868751810368d4633"
   integrity sha512-Ak6EUJZuhGS8hJ3c2fY6UW5MbkGUPMBEGd13djUzoY/BHqV/gTuFWtC6IuVA7A2+v3yjBS6c4or50xhzTQZImQ==
   dependencies:
     http-errors "~1.8.1"

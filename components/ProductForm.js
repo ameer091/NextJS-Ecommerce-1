@@ -79,7 +79,7 @@ export default function ProductForm({
 
   return (
     <form onSubmit={saveProduct}>
-      {/*[your form contents here*/}
+
     </form>
   );
 }
