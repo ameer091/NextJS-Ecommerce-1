@@ -19,32 +19,9 @@ function Categories({swal}){
       setCategories(result.data);
     })
   }
-  /*async function saveCategory(ev){
-    ev.preventDefault();
-    const data = {name, parentCategory}
-    if (editedCategory){
-      data._id = editedCategory._id;
-      await axios.put('/api/categories', data);
-      setEditedCategory(null);
-    } else {
-      await axios.post('api/categories', data)
-    }
-    setName('');
-    fetchCategories();
-  }
-*/
+
 async function saveCategory(ev){
   ev.preventDefault();
-// Prevent the form submission if the 'name' field is empty
-// if (!name.trim()) {
-//   swal.fire({
-//     icon: 'error',
-//     title: 'Oops...',
-//     text: 'The name field cannot be empty!',
-//   });
-//   return;
-// }
-
   const data = {
     name,
     parentCategory,
@@ -163,7 +140,7 @@ async function saveCategory(ev){
         </div>
         <div className="flex gap-1">
         {editedCategory && (
-          <button type='button'className="btn-default" onClick={() =>{setEditedCategory(null); setName(''); setParentCategory(''), setProperties([]);}}>Cancel </button>
+          <button type='button'className="btn-default" onClick={() =>{setEditedCategory(null); setName(''); setParentCategory(''); setProperties([]);}}>Cancel </button>
 
         )}
 
@@ -175,7 +152,7 @@ async function saveCategory(ev){
    {!editedCategory && (
     <table className="basic mt-4">
     <thead>
-      <tr>
+      <tr key={cateogry._id}>
         <td>Category name</td>
         <td>Parent Category</td>
         <td></td>
@@ -184,7 +161,7 @@ async function saveCategory(ev){
     </thead>
     <tbody>
       {categories.length > 0 && categories.map(category => (
-        <tr>
+        <tr key={category._id}>
           <td>{category.name} </td>
           <td>{category?.parent?.name}</td>
           <td>

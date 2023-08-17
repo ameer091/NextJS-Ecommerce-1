@@ -38,7 +38,7 @@ export default function ProductForm({
       await axios.put('/api/products', {...data,_id});
     } else {
       //create
-      {/*I used yard import axios for the api instead of the normal fetch that I do*/}
+      {/*I used yarn import axios for the api instead of the normal fetch that I do*/}
    await axios.post('/api/products', data);
      {/*This next part redirects to the products page.  It is initally set to false as we defined earlier, but we then want it to be true */}
 
@@ -119,8 +119,8 @@ if(categories.length > 0 && category) {
         : ''}</label>
           <div>
           <select value={productProperties[p.name]} onChange={ev => setProductProp(p.name, ev.target.value)}>
-           {p.values.map(v => (
-            <option value={v}>{v}</option>
+           {p.values.map((v,index) => (
+            <option key={index} value={v}>{v}</option>
            ))}
           </select>
           </div>
