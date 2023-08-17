@@ -131,7 +131,7 @@ async function saveCategory(ev){
         <label className="block">Properties</label>
         <button onClick={addProperty} type="button" className="btn-default text-sm mb-2">Add new property</button>
         {properties.length > 0 && properties.map((property, index) => (
-          <div className='flex gap-1 mb-2'>
+          <div className='flex gap-1 mb-2' key={index}>
             <input type="text" value={property.name} className="mb-0" onChange={ ev => handlePropertyNameChange(index, property, ev.target.value)} placeholder="property name (example: color)"/>
             <input type="text" value={property.values} className="mb-0" onChange={ev => handlePropertyValuesChange(index, property, ev.target.value)} placeholder="property name (values, comma separated)"/>
             <button type="button" className="btn-red" onClick={() => removeProperty(index)}>Remove</button>
@@ -152,7 +152,7 @@ async function saveCategory(ev){
    {!editedCategory && (
     <table className="basic mt-4">
     <thead>
-      <tr key={cateogry._id}>
+      <tr>
         <td>Category name</td>
         <td>Parent Category</td>
         <td></td>
@@ -160,8 +160,8 @@ async function saveCategory(ev){
 
     </thead>
     <tbody>
-      {categories.length > 0 && categories.map(category => (
-        <tr key={category._id}>
+    {categories.length > 0 && categories.map(category => (
+    <tr key={category._id}>
           <td>{category.name} </td>
           <td>{category?.parent?.name}</td>
           <td>
