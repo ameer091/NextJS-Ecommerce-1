@@ -18,16 +18,13 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   callbacks: {
     session: async ({ session, token, user }) => {
-      if (adminEmails.includes(session?.user?.email)) {
+      if (adminEmails.includes(session?.user?.email) || session?.demoMode) {
         return Promise.resolve(session);
       }
-
-      // Check for demo mode flag in the session
-      if (session?.demoMode) {
-        return Promise.resolve(session);
-      }
-
-      return false;
+      return null;  // return null instead of false
+    },
+    redirect: async (url, baseUrl) => {  // added redirect callback
+      return typeof url === 'string' && url.startsWith(baseUrl) ? url : baseUrl;
     }
   },
   session: {
@@ -63,6 +60,7 @@ export async function isAdminRequest(req, res) {
     throw 'not an admin';
   }
 }
+
 
 
 //   session: {

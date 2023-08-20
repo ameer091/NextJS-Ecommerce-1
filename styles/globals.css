@@ -82,3 +82,21 @@ table.basic a{
   @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-400 shadow-sm;
 }
 
+.aside-nav {
+  @apply fixed top-0 text-gray-500 p-4 w-full h-full bg-gray-300 transition-all;
+}
+  .aside-nav.show {
+    @apply left-0;
+  }
+
+  .aside-nav.hide {
+    @apply -left-full;
+  }
+
+  /* Media query for .aside-nav */
+  @media (min-width: 768px) {
+    .aside-nav {
+      @apply static w-auto;
+    }
+  }
+

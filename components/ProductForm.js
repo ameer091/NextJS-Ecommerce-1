@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Layout from "@/components/Layout";
 import Spinner from "@/components/Spinner";
 import { ReactSortable } from "react-sortablejs";
+import {DemoContext} from "@/contexts/demoContext"
 
 export default function ProductForm({
   _id,
@@ -14,6 +15,8 @@ export default function ProductForm({
   category: assignedCategory,
   properties: assignedProperties,
 }) {
+  const demoData = useContext(DemoContext)
+
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
   const [category, setCategory] = useState(assignedCategory || "");

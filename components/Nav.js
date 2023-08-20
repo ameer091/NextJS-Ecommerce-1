@@ -4,20 +4,23 @@ import {signOut} from 'next-auth/react'
 import Logo from "@/components/Logo"
 
 export default function Nav({show}) {
-  {/*This part I added after I set up the below*/}
   const inactiveLink = 'flex gap-1 p-1';
   //keep in mind that the highlight and primary in this case are from the tailwind.config.js file that I created and they are variables that I created.
-  const activeLink = inactiveLink + ' bg-highlight text-black rounded-sm';
+  const activeLink = `${inactiveLink} bg-highlight text-black rounded-sm`;
   const inactiveIcon = 'w-6 h-6';
-  const activeIcon = inactiveIcon + ' text-primary';
+  const activeIcon = `${inactiveIcon} text-primary`;
   {/*This useRouter is from nextjs and is to check and see if you are on a page and then if so, that becomes the activeLink and makes the others the inactiveLink*/}
   const router = useRouter();
   {/*The pathname is from the pathname on the object*/}
   const {pathname} = router;
-  async function logout() {
-    await router.push('/');
-    await signOut();
-  }
+
+  //Function to hand the logout process
+  async function handleLogout() {
+    signOut({
+        callbackUrl: '/',
+        redirect: true
+    });
+}
 
 //Keep in mind that I changed the svgs of the below as well to make it so that the icons change colors depeneding on whether or not they are selected.
 //PLEASE don't forget to change the class names after stroke if you decide to change the heroicons.
@@ -25,7 +28,7 @@ export default function Nav({show}) {
   return (
     //In the following className it is designed so that it changes depeneding on the size of the screen.  This show is from the Layout.js file. Don't forget to add the space before top 0.  The md after h-full is for medium screens
     //Create a global css variable for this. There is too much going on and I need to break it down
-    <aside className={(show?'left-0':'-left-full')+" top-0 text-gray-500 p-4 fixed w-full bg-bgGray h-full md:static md:w-auto transition-all"}>
+    <aside className={`aside-nav ${show ? 'show' : 'hide'}`}>
       <div className="mb-4 mr-4">
       <Logo />
       </div>
@@ -63,15 +66,7 @@ export default function Nav({show}) {
 
         Orders
         </Link>
-        {/* <Link href={'/settings'} className={pathname.includes('/settings') ? activeLink : inactiveLink}>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className={pathname.includes('/settings') ? activeIcon : inactiveIcon}>
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-</svg>
-
-
-        Settings</Link> */}
-        <button onClick={logout} className="flex gap-1 p-1">
+        <button onClick={handleLogout} className="flex gap-1 p-1">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
 </svg>

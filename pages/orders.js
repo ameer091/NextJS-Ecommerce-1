@@ -1,8 +1,10 @@
 import Layout from "@/components/Layout";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import {DemoContext} from "@/contexts/demoContext"
 
 export default function OrdersPage() {
+  const demoData = useContext(DemoContext);
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {

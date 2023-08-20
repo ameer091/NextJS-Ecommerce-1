@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 import axios from "axios";
 import {withSwal} from 'react-sweetalert2';
+import {DemoContext} from "@/contexts/demoContext"
 
 
 function Categories({swal}){
+  const demoData = useContext(DemoContext)
   const [editedCategory, setEditedCategory] = useState(null)
   const [name, setName] = useState('');
   const [parentCategory, setParentCategory] = useState('')
