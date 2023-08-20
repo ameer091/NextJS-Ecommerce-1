@@ -13,7 +13,7 @@ export default function Layout({children}) {
     //Keep in mind I created and defined bgGray in tailwind.config.js
   <div className="bg-bgGray w-screen h-screen flex items-center">
     <div className="text-center w-full">
-    <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg">Login with Google</button>
+    <button onClick={() => signIn('google')} className="bg-blue-500 bg-white p-2 px-4 rounded-lg">Login with Google</button>
   </div>
   </div>
   );
