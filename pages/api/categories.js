@@ -1,7 +1,7 @@
 import {Category} from "@/models/Category"
 import {mongooseConnect} from "@/lib/mongoose";
-import {getServerSession} from "next-auth"
-import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
+// import {getServerSession} from "next-auth"
+// import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
 
 
 export default async function handle(req, res) {
@@ -9,7 +9,7 @@ const {method} = req;
 //In any function where you are using a database, be sure to connect to that database.  You have been making databases and not making sure that they are connected
 await mongooseConnect();
 //Check if we are logged in
-await isAdminRequest(req, res)
+// await isAdminRequest(req, res)
 
 if (method === 'GET') {
   res.json( await Category.find().populate('parent'))

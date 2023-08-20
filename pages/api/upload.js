@@ -6,8 +6,8 @@ import fs from 'fs'
 // {/* mime is what we are using to check the type of media file we are dealing with.  Specicially in this case, we are checking to see what type of image file we are dealing with */}
 import mime from 'mime-types'
 import {mongooseConnect} from "@/lib/mongoose"
-import {getServerSession} from "next-auth"
-import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
+// import {getServerSession} from "next-auth"
+// import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
 
 const bucketName = 'ameer-nextjs-ecommerce'
 
@@ -15,7 +15,7 @@ const bucketName = 'ameer-nextjs-ecommerce'
 
 export default async function handle(req, res) {
   await mongooseConnect()
-  await isAdminRequest(req, res)
+  // await isAdminRequest(req, res)
 
   const form =  new multiparty.Form();
   const {fields,files} = await new Promise((resolve, reject) => {

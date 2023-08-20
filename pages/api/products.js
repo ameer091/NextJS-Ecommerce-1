@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import Product from "@/models/Product";
 import {mongooseConnect} from "@/lib/mongoose"
-import {getServerSession} from "next-auth"
-import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
+// import {getServerSession} from "next-auth"
+// import {isAdminRequest} from "@/pages/api/auth/[...nextauth]"
 {/*Thie is where I choose to use mongoose as the database*/}
 // export default async function handle(req, res) {
 //   const {method} = req;
@@ -50,13 +50,13 @@ export default async function handle(req, res) {
   const {method} = req;
   await mongooseConnect();
 
-  try {
-    // Throws an error if the request is not from an admin
-    await isAdminRequest(req, res)
-  } catch(err) {
-    // The error has already been handled and response has been sent by isAdminRequest
-    return;
-  }
+  // try {
+  //   // Throws an error if the request is not from an admin
+  //   await isAdminRequest(req, res)
+  // } catch(err) {
+  //   // The error has already been handled and response has been sent by isAdminRequest
+  //   return;
+  // }
 
   if(method === 'GET') {
     if (req.query?.id) {
